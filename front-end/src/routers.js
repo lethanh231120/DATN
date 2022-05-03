@@ -1,6 +1,5 @@
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { getCookie, STORAGEKEY } from './ultils/storage'
-import { useSelector } from 'react-redux'
 
 export const PrivateRoute = ({ component: Component }) => {
   const isAuthenticated = Boolean(getCookie(STORAGEKEY.ACCESS_TOKEN))

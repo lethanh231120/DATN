@@ -20,7 +20,7 @@ export default function Latest() {
 
   useEffect(() =>  {
     dispatch(getProducts({ pageSize: 12 }))
-  }, [])
+  }, [dispatch])
 
   if(products.products){
     listProduct = products.products

@@ -80,28 +80,50 @@ export default function Cart() {
     return (listProductId && listProductId.some(item => item === id))
   }
 
+  // const isProductInOrder = (product, newProduct) => {
+  //   // kiểm tra nếu sp đã có trong đơn hàng thì không thêm nữa
+  //   (isActive(product._id) === true)
+  //     ? setMessage('Sản phẩm đã có trong đơn hàng')
+  //     : (
+  //       setOrderItems((prev) => {
+  //         setMessage('')
+  //         return [...prev, newProduct]
+  //       }),
+  //       setListProductId((prev) => {
+  //         setMessage('')
+  //         return [...prev, product._id]
+  //       })
+  //     )
+  // }
   const handleAddOrder = (product) => {
-    const newProduct = {
-      name: product.name,
-      image: product.image,
-      // thêm giá tiền bằng giá tiền đã trừ đi chiết khấu của sp
-      price: subtotal(product.price, product.discount, product.quantity),
-      quantity: product.quantity,
-      productId: product.productId
-    };
-    // kiểm tra nếu sp đã có trong đơn hàng thì không thêm nữa
+    if(isActive(product._id) === true){
+      setMessage('Sản phẩm đã có trong đơn hàng')
+    }else{
+      const newProduct = {
+        name: product.name,
+        image: product.image,
+        // thêm giá tiền bằng giá tiền đã trừ đi chiết khấu của sp
+        price: subtotal(product.price, product.discount, product.quantity),
+        quantity: product.quantity,
+        productId: product.productId
+      };
+      setOrderItems((prev) => ([...prev, newProduct]))
+      setListProductId((prev) => ([...prev, product._id]))
+      setMessage('')
+    }
     // (isActive(product._id) === true)
-    //   ? setMessage('Sản phẩm đã có trong đơn hàng')
-    //   : (
-    //     setOrderItems((prev) => {
-    //       setMessage('')
-    //       return [...prev, newProduct]
-    //     }),
-    //     setListProductId((prev) => {
-    //       setMessage('')
-    //       return [...prev, product._id]
-    //     })
-    //   )
+      // ? setMessage('Sản phẩm đã có trong đơn hàng')
+      // : (
+      //   setOrderItems((prev) => {
+      //     setMessage('')
+      //     return [...prev, newProduct]
+      //   }),
+      //   setListProductId((prev) => {
+      //     setMessage('')
+      //     return [...prev, product._id]
+      //   })
+      // )
+    // isProductInOrder(product, newProduct)
   }
 
   return (

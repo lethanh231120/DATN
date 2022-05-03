@@ -15,7 +15,7 @@ const TotalCart = ({ total, orderItems, setListProductId }) => {
     province: '---- Tỉnh / Thành phố ---- ',
     district: '---- Quận / Huyện ----',
     commune: '---- Phường / Xã ----',
-    apartmentNumber: 'Số nhà'
+    apartmentNumber: ''
   })
   const [statusCreateOrder, setStatusCreateOrder] = useState(false)
   const [error, setError] = useState('')
