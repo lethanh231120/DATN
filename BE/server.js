@@ -11,17 +11,17 @@ import cartRouter from './routes/cartRouter.js'
 import wishlistRouter from './routes/wishlistRouter.js'
 import cors from 'cors'
 import { errorHandler } from './middleware/errorMiddleware.js'
-import cloudinary from 'cloudinary'
+// import cloudinary from 'cloudinary'
 
 dotenv.config();
 connectDB()
 
 //image upload cloudinary
-cloudinary.config({
-  cloud_name:process.env.CLOUDINARY_NAME,
-  api_key:process.env.CLOUDINARY_API_KEY,
-  api_secret:process.env.CLOUDINARY_API_SECRET,
-})
+// cloudinary.config({
+//   cloud_name:process.env.CLOUDINARY_NAME,
+//   api_key:process.env.CLOUDINARY_API_KEY,
+//   api_secret:process.env.CLOUDINARY_API_SECRET,
+// })
 
 const app = express();
 const PORT = process.env.PORT || 5000;
