@@ -9,7 +9,7 @@
     "start": "nodemon --inspect BE/server.js",
     "server": "nodemon BE/server",
     "client": "npm start --prefix front-end",
-    "build": "npm run build --prefix front-end",
+    "build": "CI = npm run build --prefix front-end",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
