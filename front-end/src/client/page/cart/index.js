@@ -90,18 +90,18 @@ export default function Cart() {
       productId: product.productId
     };
     // kiểm tra nếu sp đã có trong đơn hàng thì không thêm nữa
-    (isActive(product._id) === true)
-      ? setMessage('Sản phẩm đã có trong đơn hàng')
-      : (
-        setOrderItems((prev) => {
-          setMessage('')
-          return [...prev, newProduct]
-        }),
-        setListProductId((prev) => {
-          setMessage('')
-          return [...prev, product._id]
-        })
-      )
+    // (isActive(product._id) === true)
+    //   ? setMessage('Sản phẩm đã có trong đơn hàng')
+    //   : (
+    //     setOrderItems((prev) => {
+    //       setMessage('')
+    //       return [...prev, newProduct]
+    //     }),
+    //     setListProductId((prev) => {
+    //       setMessage('')
+    //       return [...prev, product._id]
+    //     })
+    //   )
   }
 
   return (
