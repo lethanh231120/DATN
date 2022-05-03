@@ -1,0 +1,42 @@
+.image-product{
+  width: 80px;
+  height: 80px;
+  & img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+table{
+  width: 100%;
+  overflow-x: auto;
+}
+table tbody tr td,
+table tbody tr th{
+  vertical-align: middle;
+}
+
+.pagination-wrapper {
+  overflow-x:auto;
+}
+
+.pagination {
+  justify-content: center;
+  margin:30px;
+}
+
+.data-slice {
+  margin-top: 15px;
+}
+.list-image{
+  height: 50px;
+  & img{
+    width: 50px;
+    height: 100%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+}
+.star{
+  color:#ff7800;
+}

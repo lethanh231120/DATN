@@ -1,0 +1,84 @@
+.avatar{
+  position: relative;
+  cursor: pointer;
+  &:before{
+    position: absolute;
+    content: '';
+    width: 200%;
+    height: 15%;
+    left: -200%;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(251,251,251,0.9587185215883228) 40%, rgba(0,212,255,1) 100%);
+    transform: rotate(-45deg);
+    opacity: 0;
+    z-index: 1000;
+    transition: all 0.15s linear;
+  }
+  &:hover{
+    &:before{
+      opacity: 1;
+      animation: imageHover 1s forwards;
+    }
+    &.avatar-text{
+      opacity: 1;
+    }
+  }
+  &-text{
+    position: absolute;
+    z-index: 1001;
+    left: 20px;
+    top: 80%;
+    height: 100%;
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    &-title{
+      color:rgba(109, 103, 103, 0.616);
+      padding: 5px;
+      border: 1px solid #000;
+      background-color: #fff;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    &-number{
+      font-size: 14px;
+      font-weight: 400;
+      color:rgba(109, 103, 103, 0.616);
+      margin: 20px 0;
+    }
+    &-button{
+      background-color: #fff;
+      color: #000;
+      border: 1px solid #fff;
+      width: 100px;
+      padding: 10px;
+      margin: 0px auto;
+    }
+  }
+  &-text-content{
+    position: absolute;
+    z-index: 1001;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    height: 100%;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+  }
+}
+@keyframes imageHover {
+  from {left: -100%}
+  to {left: 100%}
+}
+.swiper-button-next, .swiper-button-prev{
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  background-color: #eee;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after{
+  font-size: 25px !important;
+}

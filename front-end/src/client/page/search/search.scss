@@ -1,0 +1,24 @@
+.select{
+  margin-left: 10px;
+  border-radius: 0px !important;
+  height: 100%
+}
+.header{
+  &__logo {
+    font-size: 30px;
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
+
+.icons{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+.search-icon{
+  width: 50px;
+}
+

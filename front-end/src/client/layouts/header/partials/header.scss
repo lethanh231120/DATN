@@ -1,0 +1,56 @@
+:root{
+  --orange:#ff7800;
+  --black:#130f40;
+  --light-color:#666;
+  --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
+  --border:.2rem solid rgba(0,0,0,.1);
+  --outline:.1rem solid rgba(0,0,0,.1);
+  --outline-hover:.2rem solid var(--black);
+}
+
+.header {
+  width: 100%;
+  background-color: #fff;
+  color:#000 ;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  font-size: 20px;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 15px 20px -20px;
+  &__logo {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  &__link {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  &__link:hover{
+    color: #ff7777;
+    border-radius: 5px;
+  }
+}
+.activeClassName{
+  color: #ff7800;
+}
+
+.modal{
+  // position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
+
+legend{
+  width: 0 !important;
+}
+@media screen and (max-width: 810px) {
+  .header__link {
+    color: unset;
+    text-decoration: none;
+  }
+}
