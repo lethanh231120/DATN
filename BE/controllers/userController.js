@@ -263,8 +263,8 @@ const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
   if (user) {
-    user.image = req.file ? req.file.path : user.image;
-    // user.image = req.file ? `http://localhost:${process.env.PORT}/` + req.file.path : user.image;
+    // user.image = req.file ? req.file.path : user.image;
+    user.image = req.file ? `http://localhost:${process.env.PORT}/` + req.file.path : user.image;
     user.first_name = req.body.first_name || user.first_name;
     user.last_name = req.body.last_name || user.last_name;
     user.email = req.body.email || user.email;
