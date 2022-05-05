@@ -1,0 +1,41 @@
+.blog{
+  &-date{
+    position: relative;
+    &:after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 80%;
+      border-bottom: 2px solid #000;
+      height: 3px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  &-title{
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 1px;
+    line-height: 3;
+    font-weight: bold;
+    & a{
+      color:#000;
+    }
+  }
+  &-content{
+    font-size: 14px;
+    line-height: 3;
+    width: 100%;
+    display: block;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    white-space: nowrap;
+  }
+  &-button{
+    line-height: 3;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}

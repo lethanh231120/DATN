@@ -1,0 +1,66 @@
+.avatar{
+  position: relative;
+  cursor: pointer;
+  &:before{
+    position: absolute;
+    content: '';
+    width: 200%;
+    height: 15%;
+    left: -200%;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(251,251,251,0.9587185215883228) 40%, rgba(0,212,255,1) 100%);
+    transform: rotate(-45deg);
+    opacity: 0;
+    z-index: 1000;
+    transition: all 0.15s linear;
+  }
+  &:hover{
+    &:before{
+      opacity: 1;
+      animation: imageHover 1s forwards;
+    }
+  }
+  &-sale{
+    position: absolute;
+    z-index: 1001;
+    left: 20px;
+    top: 80%;
+    height: 100%;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    &-name{
+      font-size: 22px;
+    }
+    &-title{
+      color:rgba(54, 54, 54, 0.616);
+      padding: 5px;
+      border: 1px solid #000;
+      background-color: #fff;
+      margin-bottom: 30px;
+    }
+    &-number{
+      font-size: 14px;
+      font-weight: 400;
+      color:rgba(190, 186, 186, 0.616);
+      margin: 20px 0;
+    }
+  }
+  &-content{
+    position: absolute;
+    z-index: 1001;
+    left: 5%;
+    top: 30%;
+    height: 100%;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: left;
+  }
+  &-content.left{
+    left: 60%;
+  }
+}
+@keyframes imageHover {
+  from {left: -100%}
+  to {left: 100%}
+}

@@ -1,0 +1,52 @@
+.table,.table-notice{
+  max-height: 500px;
+  overflow-y: auto;
+}
+.table-notice table thead tr th:nth-child(1){
+  width: 5%;
+}
+.table-notice table thead tr th:nth-child(2){
+  width: 20%;
+}
+.table-notice table thead tr th:nth-child(3){
+  width: 17%;
+}
+.table-notice table thead tr th:nth-child(4){
+  width: 15%;
+}
+.table-notice table thead tr th:nth-child(5){
+  width: 15%;
+}
+
+.table-notice table thead tr th:nth-child(6){
+  width: 200px;
+}
+.table-notice table thead tr th:nth-child(7){
+  width: 5%;
+}
+.table-notice table tbody tr td a{
+  color: #3779e4;
+  overflow: hidden !important;
+}
+.notice-image{
+  height: 150px;
+  display: flex;
+  align-items: center;
+  img{
+    height: 50%;
+    margin: 0px auto;
+    object-fit: cover;
+  }
+}
+.table-row{
+  transition: all 0.15s linear;
+  &:hover{
+    background-color: #fcebf5;
+    cursor: pointer;
+  }
+}
+@media screen and (max-width: 991.98px) {
+  .table-notice table {
+    overflow-x: auto;
+  }
+}
