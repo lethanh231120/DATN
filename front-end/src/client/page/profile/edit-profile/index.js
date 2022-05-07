@@ -5,7 +5,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup'
 import Lottie from "lottie-react";
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Container, Box, Grid, Avatar, Link, Input, FormControl } from '@mui/material';
+import {
+  Box,
+  Grid,
+  FormControl,
+  Link,
+  Container,
+  IconButton,
+  Typography,
+  Paper,
+  Input,
+  Avatar,
+  Rating,
+  Button, Dialog, DialogActions, DialogTitle
+} from '@mui/material'
 import AnimatedPage from '../../../animation-page/AnimatedPage'
 import { styled } from "@mui/material/styles";
 import securityAccount from '../../../lotties/cloud-computing-security.json'
@@ -15,6 +28,7 @@ import { getProfile } from '../../../../redux/Profile';
 import { CssTextField, StyleButton } from '../../assets/styles.js'
 import '../../assets/style.scss'
 import { putProfile } from '../../../../redux/Profile';
+import { put } from '../../../../api/BaseRequest'
 
 const StyledBox = styled(Box)(() => ({
   position: 'relative',
@@ -53,10 +67,11 @@ const defaultValues = {
 
 const EditProfile = () => {
   const [image, setImage] = useState('')
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { profile, status } = useSelector(state => state.profile)
+  const { profile } = useSelector(state => state.profile)
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState('')
 
   useEffect(() => {
     dispatch(getProfile())
@@ -87,13 +102,24 @@ const EditProfile = () => {
     navigate('/')
   }
 
-  const handleSubmitFormEdit = (data) => {
-    const formData = new FormData()
-    Object.keys(data).forEach(key => formData.append(`${key}`, data[key]))
-    formData.append('image', image)
-    formData.append('isAdmin', false)
-    dispatch(putProfile(formData))
-    status === 'profile updated' && (navigate(-1))
+  const handleSubmitFormEdit = async(data) => {
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json'
+      }
+    }
+    try{
+      const formData = new FormData()
+      Object.keys(data).forEach(key => formData.append(`${key}`, data[key]))
+      formData.append('image', image)
+      formData.append('isAdmin', false)
+      await put('user/profile', formData, config)
+      setMessage('Cập nhật thông tin thành công')
+      setOpen(true)
+    }catch(error){
+      error?.response?.data && setMessage(error.response.data.message)
+    }
   }
 
   return (
@@ -110,7 +136,8 @@ const EditProfile = () => {
                   <Avatar
                     alt='avatar'
                     sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    src={image ? (URL.createObjectURL(image)) : '/images/banner1.jpg'}
+                    src={(profile && !image) ? profile.image :
+                      (profile && image) ? (URL.createObjectURL(image)) : '/images/banner1.jpg'}
                   />
                   <Link className='input-file-avatar' component='label'>
                     choose file
@@ -224,6 +251,19 @@ const EditProfile = () => {
               </Item>
             </Grid>
           </Grid>
+          <div>
+          <Dialog
+            open={open}
+            onClose={() => setOpen(false)}
+          >
+            <DialogTitle id="alert-dialog-title">
+              {message && message}
+            </DialogTitle>
+            <DialogActions>
+              <Button onClick={() => navigate('/profile')} variant="contained">Đồng ý</Button>
+            </DialogActions>
+          </Dialog>
+        </div>
         </Container>
       </Container>
       <Footer/>

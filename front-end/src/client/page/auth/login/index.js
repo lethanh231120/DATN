@@ -113,7 +113,7 @@ export default function SignIn() {
           variant='h5'
           sx={{ color: '#2b78e4', fontWeight: 'bold' }}
         >
-          Relipa Portal
+          Đăng nhập vào ANDROLIN
         </Typography>
         <Box component='form' onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
           <Controller

@@ -3,6 +3,7 @@ import User from '../models/userModel.js'
 import generateAuthToken from "../utils/generateToken.js";
 import sendEmail from "../utils/sendEmail.js";
 import generator from 'generate-password'
+import cloudinary from 'cloudinary'
 
 // @desc   Auth user & get token
 // @route  POST /api/users/login
@@ -40,9 +41,19 @@ const logout = asyncHandler(async (req, res, next) => {
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
   const { email, isAdmin, password } = req.body
+
+  let myCloud
+  if(req.file !== undefined){
+    myCloud = await cloudinary.uploader.upload(req.file.path, {
+      folder: "image",
+      width: 150,
+      crop: "scale",
+    });
+  }
+
   const user = User.create({
     ...req.body,
-    image: req.file ? `http://localhost:${process.env.PORT}/` + req.file.path : '',
+    image: req.file ? myCloud.secure_url : '',
     isWork: true,
     isAdmin: isAdmin || false,
   })
@@ -63,18 +74,12 @@ const registerUser = asyncHandler(async (req, res) => {
       html: `<h5>email: ${email}</h5> <h5>password: ${password}</h5> <a href=${loginURL}>Đăng nhập ngay</a>`,
     })
     res.status(201).json({
-      _id: req.body._id,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      phone: req.body.phone,
-      address: req.body.address,
-      email: req.body.email,
-      isAdmin: req.body.isAdmin,
+      message: 'Đăng ký thành công'
     });
   }
   else{
     res.status(400);
-    throw new Error('Invalid user data');
+    throw new Error('Không tồn tại dữ liệu');
   }
 })
 
@@ -188,8 +193,18 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @access Private
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
+
+  let myCloud
+  if(req.file !== undefined){
+    myCloud = await cloudinary.uploader.upload(req.file.path, {
+      folder: "image",
+      width: 150,
+      crop: "scale",
+    });
+  }
+
   if (user) {
-    user.image = req.file && (`http://localhost:${process.env.PORT}/`+req.file.path)
+    user.image = req.file ? myCloud.secure_url : user.image;
     user.first_name = req.body.first_name || user.first_name;
     user.last_name = req.body.last_name || user.last_name;
     user.email = req.body.email || user.email;
@@ -202,11 +217,11 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     await user.save();
 
     res.json({
-      message: 'Updated successfully!'
+      message: 'Cập nhật thông tin thành công!'
     });
   } else {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error('Tài khoản không tồn tại');
   }
 });
 
@@ -262,9 +277,14 @@ const getUserById = asyncHandler(async (req, res) => {
 const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
+  const myCloud = await cloudinary.uploader.upload(req.file.path, {
+    folder: "image",
+    width: 150,
+    crop: "scale",
+  });
+
   if (user) {
-    // user.image = req.file ? req.file.path : user.image;
-    user.image = req.file ? `http://localhost:${process.env.PORT}/` + req.file.path : user.image;
+    user.image = req.file ? myCloud.secure_url : user.image;
     user.first_name = req.body.first_name || user.first_name;
     user.last_name = req.body.last_name || user.last_name;
     user.email = req.body.email || user.email;
@@ -305,7 +325,9 @@ const forgotPassword = (asyncHandler( async(req, res) => {
 
     res.status(200).json({
       success: true,
-      message: `Mật khẩu đã được gửi tới Email:${user.email}! Bui lòng kiểm tra email của bạn`
+      email,
+      password,
+      message: `Mật khẩu đã được gửi tới Email:${user.email}! Vui lòng kiểm tra email của bạn`
     })
   }else{
     res.status(401)
@@ -335,6 +357,36 @@ const updatePassword = (asyncHandler( async(req, res) => {
   })
 }))
 
+// @desc   statistical user
+// @route  get /api/users/statistical
+// @access public
+const statisticalUser = asyncHandler(async (req, res) => {
+  const perMonth = req.query.perMonth
+  const filter = {}
+
+  const date_to = new Date();
+  const currMonth = date_to.getMonth()
+  const currDay = date_to.getDate()
+
+  const date_from = new Date();
+  date_from.setDate(currDay)
+  date_from.setMonth(currMonth - perMonth)
+
+  if(req.query.perMonth) filter.createdAt = {
+    $gte: date_from,
+    $lte: date_to
+  }
+
+  const count = await User.countDocuments(filter);
+  const users = await User.find(filter)
+    .sort({ createdAt: -1 })
+  res.json({
+    users,
+    total_User: count,
+    perMonth : typeof(perMonth)
+  })
+});
+
 export {
   authUser,
   logout,
@@ -351,5 +403,6 @@ export {
   updateUser,
   forgotPassword,
   updatePassword,
-  searchUser
+  searchUser,
+  statisticalUser
 }

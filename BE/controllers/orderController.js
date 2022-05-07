@@ -174,6 +174,35 @@ const updateOrder = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc   statistical order
+// @route  get /api/orders/statistical
+// @access public
+const statisticalOrder = asyncHandler(async (req, res) => {
+  const perMonth = req.query.perMonth
+  const filter = {}
+
+  const date_to = new Date();
+  const currMonth = date_to.getMonth()
+  const currDay = date_to.getDate()
+
+  const date_from = new Date();
+  date_from.setDate(currDay)
+  date_from.setMonth(currMonth - perMonth)
+
+  if(req.query.perMonth) filter.createdAt = {
+    $gte: date_from,
+    $lte: date_to
+  }
+
+  const count = await Order.countDocuments(filter);
+  const orders = await Order.find(filter)
+    .sort({ createdAt: -1 })
+  res.json({
+    orders: orders,
+    total_Order: count
+  })
+});
+
 export {
   addOrderItems,
   getOrders,
@@ -181,5 +210,6 @@ export {
   getMyOrders,
   deleteOrder,
   updateOrder,
-  searchOrders
+  searchOrders,
+  statisticalOrder
 }

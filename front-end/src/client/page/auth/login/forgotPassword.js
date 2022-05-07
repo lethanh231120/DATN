@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, Button, Container, TextField, Typography } from '@mui/material'
+import {
+  Box,
+  FormControl,
+  Link,
+  Container,
+  TextField,
+  IconButton,
+  Typography,
+  Paper,
+  Input,
+  Avatar,
+  Rating,
+  Button, Dialog, DialogActions, DialogTitle
+} from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
+import { post } from '../../../../api/BaseRequest'
 
 const CssTextField = styled(TextField)({
   '& .MuiOutlinedInput-root': {
@@ -24,6 +39,10 @@ const validationSchema = Yup.object().shape({
 })
 
 export default function ForgotPassword({ onClose }) {
+  const [error, setError] = useState('')
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate()
+
   const {
     control,
     handleSubmit,
@@ -35,7 +54,13 @@ export default function ForgotPassword({ onClose }) {
   })
 
   const onSubmit = async(data) => {
-    console.log(data)
+    try{
+      await post('users/forgot-password', data)
+      setError('Mật khẩu đã được gửi tới email của bạn. Vui lòng kiểm tra email!')
+    }catch(error){
+      error?.response?.data && setError(error.response.data.message)
+    }
+    setOpen(true)
   }
 
   return (
@@ -48,10 +73,10 @@ export default function ForgotPassword({ onClose }) {
       >
         <Typography
           component='h1'
-          variant='subtitle2'
+          variant='h6'
           sx={{ color: '#2b78e4' }}
         >
-          Quên mật khẩu
+          Nhập địa chỉ email để lấy lại mật khẩu
         </Typography>
         <Box
           component='form'
@@ -80,13 +105,11 @@ export default function ForgotPassword({ onClose }) {
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '140px' }}>
             <Button
               type='submit'
-              variant='contained'
             >
               Gửi
             </Button>
             <Button
               onClick={onClose}
-              variant='contained'
               color='error'
             >
               Hủy
@@ -94,6 +117,19 @@ export default function ForgotPassword({ onClose }) {
           </Box>
         </Box>
       </Box>
+      <div>
+        <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+        >
+          <DialogTitle id="alert-dialog-title">
+            {error && error}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={() => navigate('/')} variant="contained">Đồng ý</Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     </Container>
   )
 }

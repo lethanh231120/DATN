@@ -152,7 +152,7 @@ const Order = () => {
                     <th>{index+1}</th>
                     <td>{item.userName}</td>
                     <td>{item.shippingAddress}</td>
-                    <td>{item.totalPrice + item.shippingPrice}</td>
+                    <td>{item.totalPrice}</td>
                     <td>{item.paymentMethod}</td>
                     <td>{item.paymentResult}
                     </td>

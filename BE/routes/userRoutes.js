@@ -15,7 +15,8 @@ import {
   forceUser,
   forgotPassword,
   updatePassword,
-  searchUser
+  searchUser,
+  statisticalUser
 } from '../controllers/userController.js'
 import { uploadFile } from './uploadFile.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
@@ -26,6 +27,7 @@ router
   .post(uploadFile, registerUser)
   .get(protect, admin, searchUser)
 
+router.route('/users/statistical').get(protect, admin, statisticalUser)
 router.route('/users/forgot-password').post(forgotPassword)
 router.route('/user/change-password').put(protect, updatePassword)
 router.route('/users/trash').get(protect, admin, getTrashUsers)

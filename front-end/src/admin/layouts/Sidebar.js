@@ -1,11 +1,12 @@
 import { Button, Nav, NavItem } from "reactstrap";
 import { NavLink, useLocation } from "react-router-dom";
-import user1 from "../assets/images/users/user4.jpg";
-import probg from "../assets/images/bg/download.jpg";
+// import user1 from "../assets/images/users/user4.jpg";
+// import probg from "../assets/images/bg/download.jpg";
+import './header.css'
 
 const navigation = [
   {
-    title: "Dashboard",
+    title: "Trang Chủ",
     path: "/admin",
     icon: "bi bi-speedometer2",
   },
@@ -41,7 +42,7 @@ const navigation = [
   }
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ userInfo }) => {
   const showMobilemenu = () => {
     document.getElementById("sidebarArea").classList.toggle("showSidebar");
   };
@@ -51,11 +52,11 @@ const Sidebar = () => {
     <div>
       <div className="d-flex align-items-center"></div>
       <div
-        className="profilebg"
-        style={{ background: `url(${probg}) no-repeat` }}
+        className="profile"
+        style={{ background: `url(${userInfo.image}) no-repeat` }}
       >
         <div className="p-3 d-flex">
-          <img src={user1} alt="user" width="50" className="rounded-circle" />
+          <img src={userInfo.image} alt="user" className="rounded-circle avatar" />
           <Button
             color="white"
             className="ms-auto text-white d-lg-none"
@@ -64,7 +65,7 @@ const Sidebar = () => {
             <i className="bi bi-x"></i>
           </Button>
         </div>
-        <div className="bg-dark text-white p-2 opacity-75">Steave Rojer</div>
+        <div className="bg-dark text-white p-2 opacity-75">{userInfo.first_name} {userInfo.last_name}</div>
       </div>
       <div className="p-3 mt-2">
         <Nav vertical className="sidebarNav">

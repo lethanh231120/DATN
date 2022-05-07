@@ -13,6 +13,8 @@ import {
   Paper,
   Input,
   Avatar,
+  Rating,
+  Button, Dialog, DialogActions, DialogTitle
 } from '@mui/material'
 import { CssTextField, StyledBox, StyleButton } from '../../assets/styles.js'
 import '../../assets/style.scss'
@@ -55,7 +57,9 @@ const defaultValues = {
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState()
+  const [message, setMessage] = useState('')
+  const [open, setOpen] = useState(false);
 
   const {
     control,
@@ -81,6 +85,8 @@ export default function Register() {
       formData.append('image', image)
       formData.append('isAdmin', false)
       await post('users', formData, config)
+      setMessage('Đăng ký thành công! Kiểm tra email của bạn để lấy thông tin đăng nhập')
+      setOpen(true)
     }catch(error){
       error?.response?.data && setError('server_error', {
         type: 'manual',
@@ -115,7 +121,7 @@ export default function Register() {
             <Avatar
               alt='avatar'
               sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              src={image ? (URL.createObjectURL(image)) : '/images/banner1.jpg'}
+              src={image ? (URL.createObjectURL(image)) : '/images/user.png'}
             />
             <Link className='input-file-avatar' component='label'>
               choose file
@@ -261,6 +267,21 @@ export default function Register() {
             </StyleButton>
           </Box>
         </StyledBox>
+        <div>
+          <Dialog
+            open={open}
+            onClose={() => setOpen(false)}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {message && message}
+            </DialogTitle>
+            <DialogActions>
+              <Button onClick={() => navigate('/login')} variant="contained">Đồng ý</Button>
+            </DialogActions>
+          </Dialog>
+        </div>
       </Paper>
     </Container>
   )

@@ -113,7 +113,7 @@ const FormAddress = (props) => {
         </FormControl>
         <FormControl sx={{ mb: 2, width:'100%' }} >
           <CssTextField
-            placeholder='Số nhà'
+            placeholder={address.apartmentNumber}
             onChange={handleChangeApartmentNumber}
           />
         </FormControl>

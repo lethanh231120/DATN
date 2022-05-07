@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Row, Col, CardTitle, CardBody, Button, FormGroup, Label, Input } from "reactstrap";
+import { Card, Row, Col, CardTitle, CardBody, Button, Input, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label } from "reactstrap";
 import { Form, Field } from "react-final-form";
 import { getProfile, putProfile } from '../../../../redux/Profile';
 import './profile.scss'
+import { put } from '../../../../api/BaseRequest';
 
 const validateForm = (values)  => {
   const errors = {};
@@ -37,7 +38,8 @@ const validateForm = (values)  => {
 const EditProfile = () => {
   const navigate = useNavigate()
   const [image, setImage] = useState('')
-
+  const [open, setOpen] = useState(false)
+  const [error, setError] = useState('')
   const { profile, status } = useSelector((state) => state.profile)
   const dispatch = useDispatch()
 
@@ -53,13 +55,26 @@ const EditProfile = () => {
     navigate(-1)
   }
 
-  const onSubmit = (values) => {
-    const isAdmin = (values.userType === 'admin' ? true : false)
-    const formData = new FormData()
-    Object.keys(values).forEach(key => formData.append(`${key}`, values[key]))
-    formData.append('image', image)
-    formData.set('userType', isAdmin)
-    dispatch(putProfile(formData))
+  const onSubmit = async(values) => {
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json'
+      }
+    }
+    try{
+      const isAdmin = (values.userType === 'admin' ? true : false)
+      const formData = new FormData()
+      Object.keys(values).forEach(key => formData.append(`${key}`, values[key]))
+      formData.append('image', image)
+      formData.set('userType', isAdmin)
+      await put('user/profile', formData, config)
+      setError('Cập nhật thông tin thành công')
+      setOpen(true)
+    }catch(error){
+      error?.response?.data && setError(error.response.data.message)
+      setOpen(true)
+    }
   }
 
   return (
@@ -192,6 +207,16 @@ const EditProfile = () => {
               )}
             />
           </CardBody>
+          <div>
+            <Modal isOpen={open}>
+              <ModalBody>{error}</ModalBody>
+              <ModalFooter>
+                <Button onClick={() => navigate('/admin/my-profile')} color='primary'>
+                  Đồng ý
+                </Button>
+              </ModalFooter>
+            </Modal>
+          </div>
         </Card>
       </Col>
     </Row>

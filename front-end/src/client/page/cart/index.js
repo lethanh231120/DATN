@@ -80,21 +80,6 @@ export default function Cart() {
     return (listProductId && listProductId.some(item => item === id))
   }
 
-  // const isProductInOrder = (product, newProduct) => {
-  //   // kiểm tra nếu sp đã có trong đơn hàng thì không thêm nữa
-  //   (isActive(product._id) === true)
-  //     ? setMessage('Sản phẩm đã có trong đơn hàng')
-  //     : (
-  //       setOrderItems((prev) => {
-  //         setMessage('')
-  //         return [...prev, newProduct]
-  //       }),
-  //       setListProductId((prev) => {
-  //         setMessage('')
-  //         return [...prev, product._id]
-  //       })
-  //     )
-  // }
   const handleAddOrder = (product) => {
     if(isActive(product._id) === true){
       setMessage('Sản phẩm đã có trong đơn hàng')
@@ -111,19 +96,6 @@ export default function Cart() {
       setListProductId((prev) => ([...prev, product._id]))
       setMessage('')
     }
-    // (isActive(product._id) === true)
-      // ? setMessage('Sản phẩm đã có trong đơn hàng')
-      // : (
-      //   setOrderItems((prev) => {
-      //     setMessage('')
-      //     return [...prev, newProduct]
-      //   }),
-      //   setListProductId((prev) => {
-      //     setMessage('')
-      //     return [...prev, product._id]
-      //   })
-      // )
-    // isProductInOrder(product, newProduct)
   }
 
   return (

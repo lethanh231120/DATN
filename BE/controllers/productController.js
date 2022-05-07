@@ -1,15 +1,25 @@
 import asyncHandler from "express-async-handler";
 import Product from '../models/productModel.js'
+import cloudinary from 'cloudinary'
 
 // @desc    Create a product
 // @route   POST /api/products
 // @access  Private/Admin
 const createProduct = asyncHandler(async (req, res) => {
   const files = req.files
+
+  let imagesLinks = []
+  for (let i = 0; i < files.length; i++) {
+    const result = await cloudinary.v2.uploader.upload(files[i].path, {
+      folder: "products",
+    });
+    imagesLinks.push(result.secure_url);
+  }
+
   const product = Product.create({
     user: req.user._id,
     name: req.body.name,
-    listImage: files && files.map(item => (`http://localhost:${process.env.PORT}/` + item.path)),
+    listImage: files && imagesLinks,
     categoryId: req.body.categoryId && req.body.categoryId,
     description: req.body.description && req.body.description,
     weight: req.body.weight && req.body.weight,
@@ -192,11 +202,20 @@ const updateProduct = asyncHandler(async (req, res) => {
   const { name, price, description, weight, dimensions, categoryId, countInStock, discount } =
     req.body;
   const files = req.files
+
+  let imagesLinks = []
+  for (let i = 0; i < files.length; i++) {
+    const result = await cloudinary.v2.uploader.upload(files[i].path, {
+      folder: "products",
+    });
+    imagesLinks.push(result.secure_url);
+  }
+
   const product = await Product.findById(req.params.id);
 
   if (product) {
     product.name = name || product.name;
-    product.listImage = files && files.map(item => (`http://localhost:${process.env.PORT}/` + item.path)),
+    product.listImage = files && imagesLinks,
     product.price = price || product.price;
     product.description = description || product.description;
     product.weight = weight || product.weight;
@@ -280,6 +299,35 @@ const getAllProductReviews = asyncHandler(async (req, res, next) => {
   })
 })
 
+// @desc   statistical product
+// @route  get /api/products/statistical
+// @access public
+const statisticalProduct = asyncHandler(async (req, res) => {
+  const perMonth = req.query.perMonth
+  const filter = {}
+
+  const date_to = new Date();
+  const currMonth = date_to.getMonth()
+  const currDay = date_to.getDate()
+
+  const date_from = new Date();
+  date_from.setDate(currDay)
+  date_from.setMonth(currMonth - perMonth)
+
+  if(req.query.perMonth) filter.createdAt = {
+    $gte: date_from,
+    $lte: date_to
+  }
+
+  const count = await Product.countDocuments(filter);
+  const products = await Product.find(filter)
+    .sort({ createdAt: -1 })
+  res.json({
+    products,
+    total_Product: count
+  })
+});
+
 export {
   getProducts,
   getAllProducts,
@@ -293,5 +341,6 @@ export {
   updateProduct,
   deleteProduct,
   restoreProduct,
-  forceProduct
+  forceProduct,
+  statisticalProduct
 }

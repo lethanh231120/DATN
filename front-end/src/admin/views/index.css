@@ -1,0 +1,23 @@
+.image{
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 0px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image i{
+  font-size: 70px;
+}
+.input-select{
+  display: flex;
+  margin-left: auto;
+  width: 200px;
+  margin-bottom: 30px;
+}
+.card-box{
+  box-shadow: 0 0.5rem 1rem #0d6efd !important;
+  cursor: pointer;
+  height: 350px;
+}

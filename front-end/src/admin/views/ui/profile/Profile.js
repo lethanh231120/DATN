@@ -14,13 +14,13 @@ const Profile = () => {
   }, [])
 
   const handleCancel = () => {
-    navigate(-1)
+    navigate('/admin')
   }
   return (
     <div>
       <Card>
         <CardTitle tag="h6" className="border-bottom p-3 mb-0">
-          Thông tin tài khoản : Lê Thành
+          Thông tin tài khoản : {profile.first_name} {profile.last_name}
         </CardTitle>
         <CardBody className="">
           <Container>

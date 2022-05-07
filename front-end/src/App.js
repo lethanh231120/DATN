@@ -48,7 +48,7 @@ import TrashUser from './admin/views/ui/user/Trash';
 import TrashBlog from './admin/views/ui/blog/Trash'
 
 function App() {
-  const { user } = useSelector(state => state.userInfo)
+  const { user, isAuthenticated } = useSelector(state => state.userInfo)
   return (
     <Routes>
       {/* page client */}
@@ -85,7 +85,7 @@ function App() {
       </Route>
 
       {/* page admin */}
-      <Route path='/admin' element={(user.isAdmin) ? <PrivateRoute component={Admin}/> : <AdminLoginPage/>}>
+      <Route path='/admin' element={(isAuthenticated && user.isAdmin) ? <PrivateRoute component={Admin}/> : <AdminLoginPage/>}>
           <Route index element={<StarterPage />}/>
           <Route path='category' element={<Category />}/>
           <Route path='category/trash' element={<TrashCategory />}/>

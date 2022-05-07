@@ -12,7 +12,8 @@ import {
   updateProduct,
   deleteProduct,
   restoreProduct,
-  forceProduct
+  forceProduct,
+  statisticalProduct
 } from '../controllers/productController.js'
 import { uploadMultiFile } from './uploadFile.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
@@ -20,6 +21,7 @@ const router = express.Router();
 
 router.get('/search', getProductsByParams)
 router.route('/trash').get(protect, admin, getTrashProducts)
+router.route('/statistical').get(protect, admin, statisticalProduct)
 router.route('/top-rating').get(getTopRatingProducts)
 router.route('/latest').get(getLatestProducts)
 
