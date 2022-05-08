@@ -8,20 +8,26 @@
         cursor: pointer;
         transition: 0.25s linear;
       }
+      &-facebook-text-link{
+        color: gray !important;
+        &:hover{
+          color: #fff !important;
+        }
+      }
     }
   }
 }
 .footer-item{
-  color: gray;
+  color: gray !important;
   margin-top: 2rem;
   font-size: 16px;
   text-decoration: 'none';
   transition: all 0.15s linear;
   & a{
     text-decoration: none;
-    color: rgb(185, 180, 180);
+    color: rgb(185, 180, 180) !important;
     &:hover{
-      color: #fff;
+      color: #fff !important;
     }
   }
 }

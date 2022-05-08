@@ -39,16 +39,13 @@ const Footer = () => {
             <Grid item xs={2.4}>
               <Item>
                 <Typography variant='h6' sx={{ color: '#fff' }}>FaceBook</Typography>
+                <Typography variant='subtitle2' sx={{ color: '#fff', marginTop: '20px' }}>Địa chỉ</Typography>
                 <a href="https://www.facebook.com/kimdung.baker" className="footer_list-item-facebook">
-                  <img className="footer_list-item-facebook-personal"
-                    src="https://scontent.fhan2-3.fna.fbcdn.net/v/t1.6435-1/s320x320/101436493_102228714864907_4152631212052034336_n.jpg?_nc_cat=107&amp;ccb=1-3&amp;_nc_sid=7206a8&amp;_nc_ohc=MZKHZXW5e9UAX9QcmwU&amp;_nc_ht=scontent.fhan2-3.fna&amp;oh=dcadc63092896352feeb905ce8b8f2aa&amp;oe=60EFC8F7"
-                    alt=""/>
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3723.4737883168486!2d105.73291811476372!3d21.05373098598486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1651978387508!5m2!1svi!2s" width="100%" height="100%"  loading="lazy"></iframe>
                 </a>
                 <div className="footer_list-item-facebook-top">
-                  <a href="https://www.facebook.com/kimdung.baker"><i
-                      className="fab fa-facebook footer_list-item-facebook-top-link"></i></a>
                   <div className="footer_list-item-facebook-text">
-                      <a className="footer_list-item-facebook-text-link" href="https://www.facebook.com/kimdung.baker">FaceBook <i
+                      <a className="footer_list-item-facebook-text-link" href="https://www.facebook.com/profile.php?id=100022482742485" target='_blank'>Địa chỉ FaceBook <i
                           className="fas fa-check-square"></i></a>
                   </div>
                 </div>
