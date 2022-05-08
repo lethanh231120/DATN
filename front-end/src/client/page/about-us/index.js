@@ -67,7 +67,7 @@ const AboutUs = () => {
 
   return (
     <AnimatedPage>
-      <Main/>
+      <Main link='about-us' title='About Us'/>
       <Container maxWidth='xl'>
         <Container maxWidth='xl' sx={{ textAlign: 'center', marginTop: '40px' }}>
           <Typography variant='h6'>If You Wanted Get Model, How Would You Do It?</Typography>

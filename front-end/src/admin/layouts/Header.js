@@ -62,10 +62,10 @@ const Header = ({ userInfo }) => {
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem>
-            <Link to='../../admin/my-profile'>My Account</Link>
+            <Link className='link' to='../../admin/my-profile'>My Account</Link>
           </DropdownItem>
           <DropdownItem>
-            <Link to='../../admin/edit-profile'>Edit Profile</Link>
+            <Link className='link' to='../../admin/edit-profile'>Edit Profile</Link>
           </DropdownItem>
           <DropdownItem onClick={logout}>Logout</DropdownItem>
         </DropdownMenu>

@@ -66,7 +66,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   if(user){
-    const loginURL = `http://localhost:3000/admin`;
+    const loginURL = `${process.env.FRONEND_URL}/login`;
     await sendEmail({
       email: email,
       subject: `Bạn vừa đăng ký tài khoản ANDROLIN`,

@@ -37,7 +37,7 @@ const BlogItem = ({ id, image, date, productId, title, content }) => {
         </Box>
         <Typography variant='h5' sx={{ color: '#000', marginTop: '5px', fontWeight: 'bold' }}>{title}</Typography>
         <Typography variant='subtitle1' sx={{ margin: '30px 0'}}>{content}</Typography>
-        <Link to={`${id}`}>
+        <Link to={`../../blogs/${id}`}>
           <Button variant="outlined" sx={{ borderRadius: '0px' }}>Xem thêm</Button>
         </Link>
       </Box>

@@ -10,7 +10,7 @@ import { postCart } from './../../../redux/cartSlice'
 
 export default function BasicTable() {
   let listProduct = []
-  
+
   const dispatch = useDispatch()
   const { wishlists, message } = useSelector(state => state.wishlists)
   const { isAuthenticated } = useSelector(state => state.userInfo)
@@ -46,7 +46,7 @@ export default function BasicTable() {
 
   return (
     <AnimatedPage>
-      <Main/>
+      <Main link='wishlist' title='WishList'/>
       <Container maxWidth='xl'>
         <Container maxWidth='xl'>
           <Typography variant='h5' sx={{ margin: '40px 0 20px 0' }}>Sản phẩm yêu thích của bạn</Typography>

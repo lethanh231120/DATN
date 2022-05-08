@@ -19,7 +19,7 @@ export default function Latest() {
   const { products } = useSelector(state => state.products)
 
   useEffect(() =>  {
-    dispatch(getProducts({ pageSize: 12 }))
+    dispatch(getProducts({ pageSize: 10 }))
   }, [])
 
   if(products.products){

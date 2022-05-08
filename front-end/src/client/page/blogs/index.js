@@ -39,7 +39,7 @@ const Blog = () => {
 
   return (
     <AnimatedPage>
-      <Main/>
+      <Main link='blogs' title='Blog'/>
       <Container maxWidth='xl'>
         <Container maxWidth='xl'>
           <Box sx={{ marginTop: '50px' }}>

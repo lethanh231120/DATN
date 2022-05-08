@@ -121,7 +121,7 @@ const ProductDetail = () => {
 
   return (
     <AnimatedPage>
-      <Main/>
+      <Main link={`product/${id}`} title='Product Detail'/>
       <Container maxWidth='xl'>
         <Container maxWidth='xl'>
           <Grid container spacing={2}>

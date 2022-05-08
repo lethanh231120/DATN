@@ -12,15 +12,16 @@ const styleBox = {
   marginBottom: '50px'
 }
 
-const Main = () => {
+const Main = ({ link, title }) => {
   return (
     <Box sx={styleBox}>
         <Box sx={{ textAlign: 'center' }}>
           <Typography variant="subtitle1" component="div">
-            Blog
+           {title}
           </Typography>
           <Typography variant="subtitle1" component="div">
-            <Link to='/'>Home</Link>/Blog
+            <Link to='/'>home</Link>
+            <Link to={`/${link}`}>/{link}</Link>
           </Typography>
         </Box>
       </Box>

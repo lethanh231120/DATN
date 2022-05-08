@@ -100,7 +100,7 @@ export default function Cart() {
 
   return (
     <AnimatedPage>
-      <Main/>
+      <Main link='cart' title='Cart'/>
       <Container maxWidth='xl'>
         <Container maxWidth='xl'>
           <ListCart

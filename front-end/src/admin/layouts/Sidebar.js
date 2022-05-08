@@ -1,7 +1,5 @@
 import { Button, Nav, NavItem } from "reactstrap";
 import { NavLink, useLocation } from "react-router-dom";
-// import user1 from "../assets/images/users/user4.jpg";
-// import probg from "../assets/images/bg/download.jpg";
 import './header.css'
 
 const navigation = [

@@ -15,6 +15,7 @@ export default function RatedProduct() {
 
   const dispatch = useDispatch()
   const { productsRating } = useSelector(state => state.products)
+  const { isAuthenticated } = useSelector(state => state.userInfo)
 
   useEffect(() => {
     dispatch(getTopRatingProducts())
@@ -47,9 +48,11 @@ export default function RatedProduct() {
                   <Grid item xs={2.4}>
                     <Item>
                       <ProductDefault
+                        isAuthenticated={isAuthenticated}
                         id={item._id}
                         name={item.name}
                         price={item.price}
+                        discount={item.discount}
                         rating={item.rating}
                         image={item.listImage}
                       />

@@ -44,7 +44,7 @@ const ListProduct = () => {
 
   return (
     <AnimatedPage>
-      <Main/>
+      <Main link='product-category' title='List Product'/>
       <Container maxWidth='xl'>
         <Container maxWidth='xl'>
           <Box sx={{ marginTop: '50px' }}>

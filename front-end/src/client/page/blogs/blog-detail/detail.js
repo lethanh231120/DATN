@@ -10,7 +10,7 @@ import { getAllProductReviews } from './../../../../redux/productSlice';
 
 const Detail = ({ content, author, image, productId }) => {
   let listReview = []
-  
+
   const dispatch = useDispatch()
   const { users } = useSelector(state => state.users)
   const { reviews } = useSelector(state => state.products)
@@ -46,7 +46,7 @@ const Detail = ({ content, author, image, productId }) => {
           />
           <Box>
             <Typography variant='h5'>Tạo bởi Admin</Typography>
-            <Link to={`../author/${author}`}>
+            <Link to={`../../blogs/author/${author}`}>
               Xem tất cả bài viết của Admin <ArrowRightAltIcon/>
             </Link>
           </Box>

@@ -19,6 +19,7 @@ const FormComment = ({ productId, ratingProduct }) => {
   const {
     control,
     handleSubmit,
+    reset,
   } = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -33,6 +34,7 @@ const FormComment = ({ productId, ratingProduct }) => {
     }
     if(isAuthenticated){
       dispatch(postProductReview({ id: productId, info: info }))
+      reset()
     }else{
       setOpen(true)
     }
