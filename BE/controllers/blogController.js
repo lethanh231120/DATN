@@ -81,7 +81,6 @@ const getTrashBlogs = asyncHandler(async (req, res) => {
       }
     : {};
   const count = await Blog.findDeleted({ ...keyword });
-  console.log(count.length)
   const blogs = await Blog.findDeleted({ ...keyword })
     .sort({ name: 1 })
     .limit(pageSize)
@@ -125,7 +124,6 @@ const getBlogById = asyncHandler(async (req, res) => {
 const updateBlog = asyncHandler(async (req, res) => {
   const { name, title, content, productId, image } = req.body;
   const blog = await Blog.findById(req.params.id);
-  console.log(req.params.id)
 
   if (blog) {
     blog.name = name;

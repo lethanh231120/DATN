@@ -9,7 +9,6 @@ import './product.scss'
 const DetailProduct = () => {
   const { id } = useParams()
   let Product
-  console.log(id)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -28,8 +27,6 @@ const DetailProduct = () => {
     Product = (products.products)[0]
   }
 
-  console.log(categories)
-  console.log(Product)
   useEffect(() => {
     dispatch(getCategoryById(Product && Product.categoryId))
   }, [Product && Product.categoryId])

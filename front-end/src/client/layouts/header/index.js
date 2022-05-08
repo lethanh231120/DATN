@@ -6,10 +6,6 @@ import { Box } from '@mui/system'
 import LockIcon from '@mui/icons-material/Lock'
 import LogoutIcon from '@mui/icons-material/Logout'
 import CloseIcon from '@mui/icons-material/Close'
-import HomeIcon from '@mui/icons-material/Home'
-import ViewListIcon from '@mui/icons-material/ViewList';
-import GroupIcon from '@mui/icons-material/Group';
-import PostAddIcon from '@mui/icons-material/PostAdd';
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import ChangePass from '../../modal/change-password/index'
 import NavItem from './partials/NavItem'
@@ -34,7 +30,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false)
   const [openChangePassWord, setOpenChangePassWord] = useState(false)
-  
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { user, isAuthenticated } = useSelector(state => state.userInfo)

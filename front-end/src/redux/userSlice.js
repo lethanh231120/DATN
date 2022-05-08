@@ -48,7 +48,6 @@ export const putUserById = createAsyncThunk(
   'user/putUser',
   async(data) => {
     const { id, formData } = data
-    console.log(formData)
     return await put(`users/${id}`, formData, config)
   }
 )

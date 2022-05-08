@@ -17,7 +17,7 @@ import {
   ModalFooter
 } from "reactstrap";
 import { useDispatch, useSelector } from 'react-redux';
-import { getTrashBlogs, deleteBlog, restoreBlog, forceDeleteBlog } from './../../../../redux/blogSlice';
+import { getTrashBlogs, restoreBlog, forceDeleteBlog } from './../../../../redux/blogSlice';
 import Paginate from './../paginate/Paginate';
 
 const TrashBlog = () => {

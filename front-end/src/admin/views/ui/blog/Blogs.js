@@ -19,7 +19,7 @@ const Blogs = () => {
 
   useEffect(() => {
     dispatch(getBlogs({ page: currentPage+1 }))
-  }, [currentPage, status === 'blog deleted'])
+  }, [dispatch, currentPage, status === 'blog deleted'])
 
   const handleChangePage = (e, index) => {
     e.preventDefault();

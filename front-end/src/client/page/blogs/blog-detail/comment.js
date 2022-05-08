@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
-import { Typography, Avatar, Box, Button } from '@mui/material'
+import { Typography, Avatar, Box } from '@mui/material'
 import { getUserById } from '../../../../redux/userSlice'
 
 const Comment = ({ userId, date, comment }) => {

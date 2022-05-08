@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Row, Col, CardTitle, CardBody, Button, Input, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label } from "reactstrap";
+import { Card, Row, Col, CardTitle, CardBody, Button, Input, Modal, ModalBody, ModalFooter, FormGroup, Label } from "reactstrap";
 import { Form, Field } from "react-final-form";
-import { getProfile, putProfile } from '../../../../redux/Profile';
+import { getProfile } from '../../../../redux/Profile';
 import './profile.scss'
 import { put } from '../../../../api/BaseRequest';
 

@@ -10,12 +10,12 @@ import {
   Col,
   Button,
   Modal,
-  ModalHeader,
   ModalBody,
   ModalFooter, Input } from "reactstrap";
 import { searchUsers } from "../../../../redux/userSlice";
 import Paginate from "../paginate/Paginate";
 import { del } from "../../../../api/BaseRequest";
+
 const User = () => {
   const [error, setError] = useState('')
   const [open, setOpen] = useState(false)

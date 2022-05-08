@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import '../assets/product.scss'
 import { Box, Paper, Avatar, Typography, Rating, Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';

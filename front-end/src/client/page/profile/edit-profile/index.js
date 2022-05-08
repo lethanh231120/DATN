@@ -11,12 +11,8 @@ import {
   FormControl,
   Link,
   Container,
-  IconButton,
-  Typography,
-  Paper,
   Input,
   Avatar,
-  Rating,
   Button, Dialog, DialogActions, DialogTitle
 } from '@mui/material'
 import AnimatedPage from '../../../animation-page/AnimatedPage'
@@ -27,7 +23,6 @@ import { Item } from '../../../components/assets/style'
 import { getProfile } from '../../../../redux/Profile';
 import { CssTextField, StyleButton } from '../../assets/styles.js'
 import '../../assets/style.scss'
-import { putProfile } from '../../../../redux/Profile';
 import { put } from '../../../../api/BaseRequest'
 
 const StyledBox = styled(Box)(() => ({

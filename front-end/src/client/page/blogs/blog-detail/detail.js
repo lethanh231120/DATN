@@ -2,8 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import Comment from './comment'
-import { Typography, Avatar, Box, Button, TextField, Paper } from '@mui/material'
-import { styled } from '@mui/material/styles';
+import { Typography, Avatar, Box } from '@mui/material'
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { getUserById } from '../../../../redux/userSlice'
 import { getAllProductReviews } from './../../../../redux/productSlice';

@@ -1,15 +1,12 @@
 import React from "react";
 import {
   Navbar,
-  NavbarBrand,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   Dropdown,
   Button,
 } from "reactstrap";
-// import { ReactComponent as LogoWhite } from "../assets/images/logos/materialprowhite.svg";
-// import user1 from "../assets/images/users/user4.jpg";
 import { removeCookie, STORAGEKEY } from '../../ultils/storage/index'
 import { get } from '../../api/BaseRequest'
 import { useDispatch } from 'react-redux'
@@ -18,9 +15,6 @@ import { resetUserInfo } from '../../redux/userInfo'
 import './header.css'
 
 const Header = ({ userInfo }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  console.log(userInfo)
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
   const navigate = useNavigate()
   const dispatch = useDispatch()

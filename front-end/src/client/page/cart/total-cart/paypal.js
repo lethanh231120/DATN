@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from 'react'
 import { post } from '../../../../api/BaseRequest'
 
 const Paypal = ({ total, info, setCheckout, setListProductId, setStatusCreateOrder }) => {
-  console.log(info)
   const USD = 22957
   const paypal = useRef()
   useEffect(() => {
@@ -33,7 +32,6 @@ const Paypal = ({ total, info, setCheckout, setListProductId, setStatusCreateOrd
         setCheckout(false)
         setListProductId([])
         setStatusCreateOrder(false)
-        console.log(order)
       },
       onError: (err) => {
         console.log(err)

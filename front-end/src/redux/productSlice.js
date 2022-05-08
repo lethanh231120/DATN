@@ -83,7 +83,6 @@ export const putProductById = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
   'product/deleteProduct',
   async(id) => {
-    console.log(id)
     return await del(`products/${id}`)
   }
 )

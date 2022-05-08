@@ -98,7 +98,6 @@ const getTrashProducts = asyncHandler(async (req, res) => {
       }
     : {};
   const count = await Product.findDeleted({ ...keyword });
-  console.log(count.length)
   const products = await Product.findDeleted({ ...keyword })
     .sort({ name: 1 })
     .limit(pageSize)

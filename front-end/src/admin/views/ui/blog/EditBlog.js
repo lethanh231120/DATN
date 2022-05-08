@@ -29,13 +29,11 @@ const EditBlog = () => {
     dispatch(getBlogById(id))
   }, [])
 
-  console.log(blogs)
   useEffect(() => {
     if(status === 'get blog success'){
       dispatch(searchProduct({ id: blogs.productId }))
     }
   }, [blogs])
-  console.log(products)
 
   useEffect(() => {
     (status === 'blog updated') && (navigate('../../../admin/blog'))

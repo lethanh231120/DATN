@@ -13,7 +13,6 @@ import {
   Paper,
   Input,
   Avatar,
-  Rating,
   Button, Dialog, DialogActions, DialogTitle
 } from '@mui/material'
 import { CssTextField, StyledBox, StyleButton } from '../../assets/styles.js'

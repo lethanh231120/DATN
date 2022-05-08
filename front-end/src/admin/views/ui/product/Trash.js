@@ -15,7 +15,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getTrashProducts, forceDeleteProduct, restoreProduct } from '../../../../redux/productSlice'
-import { getAllCategories } from '../../../../redux/categorySlice';
 import './product.scss'
 import Paginate from '../paginate/Paginate';
 
